@@ -16,6 +16,7 @@
       - 'AGENTS.md'
       - 'CODEHARNESS.md'
 
+# Follow the official minimal preset pattern: bash on POSIX, PowerShell on Windows.
 - id: persistent-shell
   name: cordis:group
   group: true
@@ -24,17 +25,38 @@
   config:
     - id: pty
       name: '@deepseek-ai/dsh-terminal'
+
     - id: terminal-bash
       name: '@deepseek-ai/dsh-terminal-bash'
+      disabled: !!js process.platform === 'win32'
       config:
         timeoutMs: 300000
+
     - id: persistent-bash
       name: '@deepseek-ai/dsh-tool-bash-persistent'
+      disabled: !!js process.platform === 'win32'
       config:
         timeoutMs: 300000
         description: >-
-          Run local verification, git inspection and read-only engineering commands.
-          Do not perform physical hardware operations unless explicitly human-approved.
+          Run local verification and git inspection. Do not perform physical
+          hardware operations unless explicitly human-approved.
+
+    - id: terminal-pwsh
+      name: '@deepseek-ai/dsh-terminal-bash'
+      disabled: !!js process.platform !== 'win32'
+      config:
+        shellDialect: pwsh
+        timeoutMs: 300000
+
+    - id: persistent-pwsh
+      name: '@deepseek-ai/dsh-tool-pwsh-persistent'
+      disabled: !!js process.platform !== 'win32'
+      config:
+        timeoutMs: 300000
+        description: >-
+          Run local verification and git inspection in PowerShell. Use native
+          Windows paths and $env:NAME variables. Do not perform physical hardware
+          operations unless explicitly human-approved.
 
 - id: tool-subagent-codex
   name: '@deepseek-ai/dsh-tool-subagent'
