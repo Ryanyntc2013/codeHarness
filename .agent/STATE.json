@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "project": "codeHarness",
+  "task_id": null,
+  "status": "PLAN",
+  "attempt": 0,
+  "max_attempts": 3,
+  "owner": "main-agent",
+  "last_reason": "Repository initialized",
+  "updated_at": null
+}

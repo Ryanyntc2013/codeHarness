@@ -1,0 +1,11 @@
+{
+  "task_id": "CH-SMOKE-001",
+  "objective": "Make one bounded, non-hardware repository improvement.",
+  "executor": "codex",
+  "acceptance": [
+    "Only requested files change",
+    "Configured verification passes",
+    "No physical hardware action is attempted",
+    "Main Agent reviews deterministic evidence before accepting"
+  ]
+}

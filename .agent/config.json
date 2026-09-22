@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "workflow": {
+    "max_rework_attempts": 3,
+    "require_clean_worktree_on_accept": false
+  },
+  "permissions": {
+    "code_edit": "auto",
+    "build": "auto",
+    "unit_test": "auto",
+    "git_commit": "human",
+    "flash_firmware": "human",
+    "uart_capture": "human",
+    "logic_analyzer_capture": "human",
+    "power_cycle": "human",
+    "physical_wiring": "human"
+  },
+  "verification": {
+    "timeout_seconds": 180,
+    "commands": ["python -m unittest discover -s tests -v"]
+  }
+}

@@ -1,0 +1,50 @@
+# Copied to $DSH_HOME/.agent-presets/codeharness by setup scripts.
+
+- id: persona
+  name: '@deepseek-ai/dsh-persona'
+  config:
+    text: >-
+      You are the senior planner and reviewer for an engineering workflow.
+      Delegate implementation to the Codex subagent. Require objective verification
+      before accepting work. Never infer that a physical hardware action happened.
+
+- id: agent-instructions
+  name: '@deepseek-ai/dsh-agent-instructions'
+  config:
+    maxBytes: 131072
+    paths:
+      - 'AGENTS.md'
+      - 'CODEHARNESS.md'
+
+- id: persistent-shell
+  name: cordis:group
+  group: true
+  isolate:
+    terminals: true
+  config:
+    - id: pty
+      name: '@deepseek-ai/dsh-terminal'
+    - id: terminal-bash
+      name: '@deepseek-ai/dsh-terminal-bash'
+      config:
+        timeoutMs: 300000
+    - id: persistent-bash
+      name: '@deepseek-ai/dsh-tool-bash-persistent'
+      config:
+        timeoutMs: 300000
+        description: >-
+          Run local verification, git inspection and read-only engineering commands.
+          Do not perform physical hardware operations unless explicitly human-approved.
+
+- id: tool-subagent-codex
+  name: '@deepseek-ai/dsh-tool-subagent'
+  config:
+    provider: codex
+    toolName: subagent_codex
+    enableRunInBackground: false
+    maxDepth: provider-managed
+
+- id: tool-todo
+  name: '@deepseek-ai/dsh-tool-todo'
+  config:
+    allowParallelInProgress: false

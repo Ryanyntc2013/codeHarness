@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.py[cod]
+.agent/evidence/*.json
+.agent/evidence/*.log
+node_modules/
+.DS_Store
