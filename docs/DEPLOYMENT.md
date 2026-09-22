@@ -7,6 +7,8 @@
 - native Codex authentication available
 - OpenAI API access for the DSH Main Agent
 
+The setup scripts install pnpm 11.7.0 if it is missing because DSH profile/plugin management uses pnpm.
+
 DSH is developer preview. This repo pins `@deepseek-ai/dsh` to `0.1.6-alpha.2`.
 
 ## Windows
@@ -28,6 +30,8 @@ A fresh session matters because the preset is bound at session creation.
 
 ## Preset deployment
 The setup script copies `dsh/preset/codeharness/` to `$DSH_HOME/.agent-presets/codeharness/`. This avoids current developer-preview issues with custom preset roots being overwritten at runtime.
+
+The preset follows DSH's official platform-gated shell pattern: PowerShell on Windows and bash on POSIX.
 
 ## Codex bridge
 The profile installs `@deepseek-ai/dsh-subagent-codex`; the preset exposes `subagent_codex`. Each delegation is a fresh ephemeral Codex thread in the parent workspace.
@@ -54,6 +58,7 @@ After V1 is stable:
 ```powershell
 python tools\init_project.py D:\projects\time-sync
 ```
+
 Then edit `.agent/PROJECT.md`, `.agent/ACCEPTANCE.md`, and `.agent/config.json`, and choose that project as the DSH workspace.
 
 ## Upgrade policy
